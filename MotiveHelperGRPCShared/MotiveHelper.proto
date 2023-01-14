@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option csharp_namespace = "MotiveHelperGRPCSharedns";
+
+package greet;
+import "google/protobuf/wrappers.proto";
+
+service MotiveRequest
+{
+  rpc Init (InitRequest) returns (BasicReply);
+  rpc Free (InitRequest) returns (BasicReply);
+  rpc GetCalibrationFileName (EmptyMessage) returns (StringReply);
+  rpc IsCalibrated (EmptyMessage) returns (google.protobuf.BoolValue);
+}
+
+message EmptyMessage {
+}
+
+message InitRequest {
+}
+
+message BasicReply {
+  int32 message = 1;
+}
+
+message StringReply {
+	string message = 1;
+}
+
