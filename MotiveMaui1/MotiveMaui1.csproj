@@ -58,6 +58,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\MotiveHelperCS\MotiveHelperCS.csproj" />
 	  <ProjectReference Include="..\MotiveHelperGRPCShared\MotiveHelperGRPCShared.csproj" />
 	</ItemGroup>
 	

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MotiveHelper", "..\MotiveHelperC++\markers.vcxproj", "{3E5E0669-5CCE-4FAA-B947-171D3B113196}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MotiveHelper", "..\MotiveHelperC++\MotiveHelperC.vcxproj", "{3E5E0669-5CCE-4FAA-B947-171D3B113196}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MotiveHelperCS", "..\MotiveHelperCS\MotiveHelperCS.csproj", "{441C95F7-697D-4E6C-9972-6D011208AF24}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -69,9 +69,9 @@ Global
 		{9FF3F33F-7EA7-46F6-9772-43BA5CF923ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FF3F33F-7EA7-46F6-9772-43BA5CF923ED}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9FF3F33F-7EA7-46F6-9772-43BA5CF923ED}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{9FF3F33F-7EA7-46F6-9772-43BA5CF923ED}.Release|x64.ActiveCfg = Release|Any CPU
-		{9FF3F33F-7EA7-46F6-9772-43BA5CF923ED}.Release|x64.Build.0 = Release|Any CPU
-		{9FF3F33F-7EA7-46F6-9772-43BA5CF923ED}.Release|x64.Deploy.0 = Release|Any CPU
+		{9FF3F33F-7EA7-46F6-9772-43BA5CF923ED}.Release|x64.ActiveCfg = Debug|Any CPU
+		{9FF3F33F-7EA7-46F6-9772-43BA5CF923ED}.Release|x64.Build.0 = Debug|Any CPU
+		{9FF3F33F-7EA7-46F6-9772-43BA5CF923ED}.Release|x64.Deploy.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,8 +3,9 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <ImplicitUsings>disable</ImplicitUsings>
     <OutputType>Exe</OutputType>
+    <BaseOutputPath>$(SolutionDir)bin\</BaseOutputPath>
   </PropertyGroup>
 
   <ItemGroup>

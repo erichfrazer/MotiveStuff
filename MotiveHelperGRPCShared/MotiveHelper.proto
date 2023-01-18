@@ -1,4 +1,4 @@
-syntax = "proto3";
+ syntax = "proto3";
 
 option csharp_namespace = "MotiveHelperGRPCSharedns";
 
@@ -11,19 +11,117 @@ service MotiveRequest
   rpc Free (InitRequest) returns (BasicReply);
   rpc GetCalibrationFileName (EmptyMessage) returns (StringReply);
   rpc IsCalibrated (EmptyMessage) returns (google.protobuf.BoolValue);
+  rpc GetFrameMarkerCount(EmptyMessage) returns (BasicReply);
+  rpc GetFrameMarker(BasicReply) returns (FrameMarkerInfoMsg);
+  rpc GetFrameMarkerCentroid(MarkerAndCameraIDReply) returns (XYReply);
+  rpc GetRigidBodyCount(EmptyMessage) returns (BasicReply);
+  rpc GetCameraFilterSettings(EmptyMessage) returns (FilterSettingsMsg);
+  rpc SetCameraFilterSettings(FilterSettingsMsg) returns (EmptyMessage);
+
+  rpc GetCameraMarkerSize(EmptyMessage) returns (MarkerSizeSettingsMsg);
+  rpc SetCameraMarkerSize(MarkerSizeSettingsMsg) returns (EmptyMessage);
+  rpc IsFrameAvailable(EmptyMessage) returns (BasicReply);
+
+  rpc GetCameraCount(EmptyMessage) returns (BasicReply);
+  rpc GetCameraModel(BasicReply) returns (CameraModelMsg);
+  rpc GetCameraInfo(BasicReply) returns (CameraInfoMsg);
+  rpc SetCameraInfo(CameraInfoMsg) returns (BasicReply);
+
+
 }
 
 message EmptyMessage {
 }
 
-message InitRequest {
+message InitRequest { 
 }
 
 message BasicReply {
   int32 message = 1;
 }
 
+message MarkerAndCameraIDReply {
+	int32 MarkerID = 1;
+	int32 CameraID = 2;
+}
+
 message StringReply {
 	string message = 1;
 }
 
+message XYReply {
+	float X = 1;
+	float Y = 2;
+	bool Contributing = 3;
+}
+
+message FrameMarkerInfoMsg {
+	uint64 lowBitsID = 1;
+	uint64 highBitsID = 2;
+	float X = 3;
+	float Y = 4;
+	float Z = 5;
+	int32 ContributingRays = 11;
+	float AvgRayLength = 12;
+	float Diameter = 6;
+	float Residual = 7;
+	string Label = 8;
+	bool Selected = 9;
+	uint32 Flags = 10;
+}
+
+message FilterSettingsMsg {
+	int32 Type = 1;
+	int32 MinMarkerSize = 2;
+	int32 MaxMarkerSize = 3;
+	float MinRoundness = 4;
+}
+
+message MarkerSizeSettingsMsg {
+	int32 Type = 1;
+	float MarkerSize = 2;
+}
+
+message CameraInfoMsg {
+	int32 CameraIndex = 1;
+	int32 FrameRate = 14;
+	int32 Threshold = 2;
+	bool IRLightsOn = 3;
+	bool FilterSwitch = 4;
+	float Temperature = 5;
+	int32 VideoType = 6;
+	int32 ExposureMicroSec = 7;
+	bool AutoGainControl = 8;
+	bool AutomaticExposure = 9;
+	double MeasuredFrameRate = 10;
+	double MeasuredDataRate = 11;
+	int32 ImagerGain = 12;
+	int32 ImagerGainLevels = 13;
+}
+
+message CameraModelMsg {
+	float X = 1;
+	float Y = 2;
+	float Z = 3;
+	int32 Number = 4;
+	float R00 = 5;
+	float R10 = 6;
+	float R20 = 7;
+	float R01 = 8;
+	float R11 = 9;
+	float R21 = 10;
+	float R02 = 11;
+	float R12 = 12;
+	float R22 = 13;
+	float PrincipleX = 14;
+	float PrincipleY = 15;
+	float FocalX = 16;
+	float FocalY = 17;
+	float kc1 = 18;
+	float kc2 = 19;
+	float kc3 = 20;
+	float tangential0 = 21;
+	float tangential1 = 22;
+	int32 ResolutionX = 23;
+	int32 ResolutionY = 24;
+}

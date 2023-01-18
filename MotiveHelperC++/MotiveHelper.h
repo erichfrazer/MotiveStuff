@@ -9,25 +9,13 @@
 
 #include <MotiveAPI.h>
 #include "Matrix.h"
+#include "MotiveHelper_public.h"
 
 #define use_motive
 
 using namespace std;
 using namespace CameraLibrary;
-
-struct CameraInfo
-{
-	int CameraId;
-	double LensCenterX;                 //== Primary Point X (in pixels)
-	double LensCenterY;                 //== Primary Point Y (in pixels)
-	double HorizontalFocalLength;       //== Horizontal Focal Length (in pixels)
-	double VerticalFocalLength;         //== Vertical Focal Length {in pixels)
-	double KC1;                         //== Distortion Parameter 1
-	double KC2;                         //== Distortion Parameter 2
-	double KC3;                         //== Distortion Parameter 3
-	double Tangential0;                 //== Tangential 0
-	double Tangential1;                 //== Tangential 1
-};
+using namespace MotiveHelperLib;
 
 class APIListener : public MotiveAPIListener
 {
@@ -110,6 +98,18 @@ public:
 	void DisconnectMotive();
 	bool IsCalibrated();
     BSTR GetCalibrationFileName();
+    int  GetFrameMarkerCount();
+    bool GetFrameMarkerInfo(int MarkerID, MarkerInfo* pInfo);
+    bool GetFrameMarkerCentroid(int MarkerID, int CameraID, float* pX, float* pY);
+    void GetCameraFilterSettings(CameraFilterSettings* pCameraSettings);
+    void SetCameraFilterSettings(CameraFilterSettings* pCameraSettings);
+    void SetShutterDelay(int microSec);
+    void GetMarkerSizeSettings(MarkerSizeSettings* pSettings);
+    void SetMarkerSizeSettings(MarkerSizeSettings* pSettings);
+    bool GetCameraModel(int CameraID, CameraModel* pCamModel);
+    bool GetCameraInfo(int CameraID, CameraInfo* pCamInfo);
+    bool SetCameraInfo(int CameraID, CameraInfo* pCamInfo);
+    int  GetCameraCount();
 
 private:
 
@@ -129,8 +129,6 @@ private:
 	int ConnectClient();
 	void StopAllCameras();
 	void printf(const char* pformat, ...);
-
-	map<int, CameraInfo> m_CamInfo;
 
 	Camera* m_pCamera;
 

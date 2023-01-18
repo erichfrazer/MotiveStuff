@@ -128,7 +128,7 @@ HRESULT MotiveHelper::ConnectMotive()
     // alright, now start a thread to start processing frames..
     m_pFrameProcessorThread = std::thread(StaticFrameProcessorProc, this);
 
-    return res == 0;
+    return 0;
 
 #if false
 	unsigned char version[4] = { 0 };
@@ -293,4 +293,104 @@ void MotiveHelper::ProcessFrame()
     }
 #endif
 
+}
+
+int MotiveHelper::GetFrameMarkerCount()
+{
+    return TT_FrameMarkerCount();
+}
+
+bool MotiveHelper::GetFrameMarkerInfo(int MarkerID, MarkerInfo* pInfo)
+{
+    pInfo->X = TT_FrameMarkerX(MarkerID);
+    pInfo->Y = TT_FrameMarkerY(MarkerID);
+    pInfo->Z = TT_FrameMarkerZ(MarkerID);
+    return true;
+}
+
+bool MotiveHelper::GetFrameMarkerCentroid(int MarkerID, int CameraID, float* pX, float* pY)
+{
+    return TT_FrameCameraCentroid(MarkerID, CameraID, *pX, *pY);
+}
+
+void MotiveHelper::GetCameraFilterSettings(CameraFilterSettings* pCameraSettings)
+{
+    MotiveAPIFilterSettings settings;
+    TT_CameraFilterSettings(settings);
+    pCameraSettings->MaxMarkerSize = settings.MaxMarkerSize;
+    pCameraSettings->MinMarkerSize = settings.MinMarkerSize;
+    pCameraSettings->MinRoundness = settings.MinRoundness;
+    pCameraSettings->Type = (int)settings.FilterType;
+}
+
+void MotiveHelper::SetCameraFilterSettings(CameraFilterSettings* pCameraSettings)
+{
+    MotiveAPIFilterSettings settings;
+    settings.MaxMarkerSize = pCameraSettings->MaxMarkerSize;
+    settings.MinMarkerSize = pCameraSettings->MinMarkerSize;
+    settings.MinRoundness = pCameraSettings->MinRoundness;
+    settings.FilterType = (MotiveAPIFilterSettings::eFilterType) pCameraSettings->Type;
+    TT_SetCameraFilterSettings(settings);
+}
+
+void MotiveHelper::SetShutterDelay(int microSec)
+{
+    TT_SetShutterDelay(microSec);
+}
+
+void MotiveHelper::GetMarkerSizeSettings(MarkerSizeSettings* pSettings)
+{
+    MotiveAPIMarkerSizeSettings settings;
+    TT_CameraMarkerSize(settings);
+    pSettings->MarkerSize = settings.MarkerSize;
+    pSettings->Type = settings.MarkerSizeType;
+}
+
+void MotiveHelper::SetMarkerSizeSettings(MarkerSizeSettings* pSettings)
+{
+    MotiveAPIMarkerSizeSettings settings;
+    settings.MarkerSize = pSettings->MarkerSize;
+    settings.MarkerSizeType = (MotiveAPIMarkerSizeSettings::eMarkerSizeType) pSettings->Type;
+    TT_SetCameraMarkerSize(settings);
+}
+
+bool MotiveHelper::GetCameraModel(int CameraID, CameraModel* pCamModel)
+{
+    return false;
+}
+
+bool MotiveHelper::GetCameraInfo(int CameraID, CameraInfo* pCamInfo)
+{
+    pCamInfo->ImagerGain = TT_CameraImagerGain(CameraID);
+    pCamInfo->ImagerGainLevels = TT_CameraImagerGainLevels(CameraID);
+    pCamInfo->AutoGainControl = false; // can't set it
+    pCamInfo->AutomaticExposure = false; // can't set it
+    pCamInfo->ExposureMicroSec = TT_CameraExposure(CameraID);
+    pCamInfo->FilterSwitch = TT_CameraFilterSwitch(CameraID);
+    pCamInfo->FrameRate = TT_CameraFrameRate(CameraID);
+    pCamInfo->MeasuredFrameRate = TT_MeasuredIncomingFrameRate();
+    pCamInfo->MeasuredDataRate = TT_MeasuredIncomingDataRate();
+    pCamInfo->IRLightsOn = TT_CameraIRLedsOn(CameraID);
+    pCamInfo->Temperature = TT_CameraTemperature(CameraID);
+    pCamInfo->Threshold = TT_CameraThreshold(CameraID);
+    pCamInfo->VideoType = TT_CameraVideoType(CameraID);
+    return true;
+}
+
+bool MotiveHelper::SetCameraInfo(int CameraID, CameraInfo* pCamInfo)
+{
+    TT_SetCameraAEC(CameraID, pCamInfo->AutomaticExposure);
+    TT_SetCameraAGC(CameraID, pCamInfo->AutoGainControl);
+    TT_SetCameraExposure(CameraID, pCamInfo->ExposureMicroSec);
+    TT_SetCameraFilterSwitch(CameraID, pCamInfo->FilterSwitch);
+    TT_SetCameraImagerGain(CameraID, pCamInfo->ImagerGain);
+    TT_SetCameraIRLedsOn(CameraID, pCamInfo->IRLightsOn);
+    TT_SetCameraThreshold(CameraID, pCamInfo->Threshold);
+    TT_SetCameraVideoType(CameraID, pCamInfo->VideoType);
+    return true;
+}
+
+int MotiveHelper::GetCameraCount()
+{
+    return TT_CameraCount();
 }

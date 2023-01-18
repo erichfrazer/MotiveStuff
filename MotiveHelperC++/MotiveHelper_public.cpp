@@ -71,5 +71,88 @@ namespace MotiveHelperLib
             }
         }
 
+        int  __declspec(dllexport) GetFrameMarkerCount(void* pv)
+        {
+            if (!pv) return 0;
+            MotiveHelper* pHelper = static_cast<MotiveHelper*>(pv);
+            return pHelper->GetFrameMarkerCount();
+        }
+
+        bool __declspec(dllexport) GetFrameMarkerInfo(void* pv, int MarkerID, MarkerInfo* pInfo)
+        {
+            if (!pv) return false;
+            MotiveHelper* pHelper = static_cast<MotiveHelper*>(pv);
+            return pHelper->GetFrameMarkerInfo(MarkerID, pInfo);
+        }
+
+        bool __declspec(dllexport) GetFrameMarkerCentroid(void* pv, int MarkerID, int CameraID, float* pX, float* pY)
+        {
+            if (!pv) return false;
+            MotiveHelper* pHelper = static_cast<MotiveHelper*>(pv);
+            return pHelper->GetFrameMarkerCentroid(MarkerID, CameraID, pX, pY);
+        }
+
+        void __declspec(dllexport) GetCameraFilterSettings(void* pv, CameraFilterSettings* pCameraSettings)
+        {
+            if (!pv) return;
+            MotiveHelper* pHelper = static_cast<MotiveHelper*>(pv);
+            pHelper->GetCameraFilterSettings(pCameraSettings);
+        }
+
+        void __declspec(dllexport) SetCameraFilterSettings(void* pv, CameraFilterSettings* pCameraSettings)
+        {
+            if (!pv) return;
+            MotiveHelper* pHelper = static_cast<MotiveHelper*>(pv);
+            pHelper->SetCameraFilterSettings(pCameraSettings);
+        }
+
+        void __declspec(dllexport) SetShutterDelay(void* pv, int microSec)
+        {
+            if (!pv) return;
+            MotiveHelper* pHelper = static_cast<MotiveHelper*>(pv);
+            pHelper->SetShutterDelay(microSec);
+        }
+
+        void __declspec(dllexport) GetMarkerSizeSettings(void* pv, MarkerSizeSettings* pSettings)
+        {
+            if (!pv) return;
+            MotiveHelper* pHelper = static_cast<MotiveHelper*>(pv);
+            pHelper->GetMarkerSizeSettings(pSettings);
+        }
+
+        void __declspec(dllexport) SetMarkerSizeSettings(void* pv, MarkerSizeSettings* pSettings)
+        {
+            if (!pv) return;
+            MotiveHelper* pHelper = static_cast<MotiveHelper*>(pv);
+            pHelper->SetMarkerSizeSettings(pSettings);
+        }
+
+        bool __declspec(dllexport) GetCameraModel(void* pv, int CameraID, CameraModel* pCamModel)
+        {
+            if (!pv) return false;
+            MotiveHelper* pHelper = static_cast<MotiveHelper*>(pv);
+            return pHelper->GetCameraModel(CameraID, pCamModel);
+        }
+
+        bool __declspec(dllexport) GetCameraInfo(void* pv, int CameraID, CameraInfo* pCamInfo)
+        {
+            if (!pv) return false;
+            MotiveHelper* pHelper = static_cast<MotiveHelper*>(pv);
+            return pHelper->GetCameraInfo(CameraID, pCamInfo);
+        }
+
+        bool __declspec(dllexport) SetCameraInfo(void* pv, int CameraID, CameraInfo* pCamInfo)
+        {
+            if (!pv) return false;
+            MotiveHelper* pHelper = static_cast<MotiveHelper*>(pv);
+            return pHelper->SetCameraInfo(CameraID, pCamInfo);
+        }
+
+        int  __declspec(dllexport) GetCameraCount(void* pv)
+        {
+            if (!pv) return 0;
+            MotiveHelper* pHelper = static_cast<MotiveHelper*>(pv);
+            return pHelper->GetCameraCount();
+        }
     }
 };

@@ -4,39 +4,116 @@
              x:Class="MotiveMaui1.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout
+        <HorizontalStackLayout>
+            <VerticalStackLayout
             Spacing="25"
             Padding="30,0"
             VerticalOptions="Center">
 
-            <Image
+                <Button
+                x:Name="BtnConnect"
+                Text="Connect to Motive"
+                Clicked="BtnConnectClicked"
+                HorizontalOptions="Center" />
+
+                <Image
                 Source="dotnet_bot.png"
                 SemanticProperties.Description="Cute dot net bot waving hi to you!"
                 HeightRequest="200"
                 HorizontalOptions="Center" />
 
-            <Label
-                x:Name="Label1"
-                Text="Hello, World!"
+                <Label
+                x:Name="CalibrationName"
+                Text="???"
                 SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
                 FontSize="18"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Start" />
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+                <ListView
+                x:Name = "ListCameras"
+                ItemSelected="ListCameras_ItemSelected"
+                />
+                
+                <Label
+                x:Name="TotalCameras"
+                Text="TotalCameras = 0"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="18"
+                HorizontalOptions="Start" />
 
-        </VerticalStackLayout>
+                <Label
+                x:Name="IsCalibrated"
+                Text="False"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="18"
+                HorizontalOptions="Start" />
+
+                <Label
+                x:Name="LblCameraInFrontOf"
+                Text="Closest Camera = ?"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="18"
+                HorizontalOptions="Start"
+                />
+                
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <Label
+                    x:Name="LblSelectedCamera"
+                    Text="Selected Camera = ?"
+                    FontSize="18"
+                    HorizontalOptions="Start"
+                />
+                <Label
+                    x:Name="LblThreshold"
+                    Text="Threshold = ?"
+                    FontSize="18"
+                    HorizontalOptions="Start"
+                />
+                <Label
+                    x:Name="LblExposure"
+                    Text="Exposure = ?"
+                    FontSize="18"
+                    HorizontalOptions="Start"
+                />
+                <Label
+                    x:Name="LblGain"
+                    Text="Gain = ?"
+                    FontSize="18"
+                    HorizontalOptions="Start"
+                />
+                <Label
+                    x:Name="LblAutoExposure"
+                    Text="AutoExposure = ?"
+                    FontSize="18"
+                    HorizontalOptions="Start"
+                />
+                <Label
+                    x:Name="LblAutoGain"
+                    Text="AutoGain = ?"
+                    FontSize="18"
+                    HorizontalOptions="Start"
+                />
+                <Label
+                    x:Name="LblFov"
+                    Text="Fov = ?"
+                    FontSize="18"
+                    HorizontalOptions="Start"
+                />
+                <Label
+                    x:Name="LblFStop"
+                    Text="FStop = ?"
+                    FontSize="18"
+                    HorizontalOptions="Start"
+                />
+                <Label
+                    x:Name="LblFocus"
+                    Text="FocusMeters = ?"
+                    FontSize="18"
+                    HorizontalOptions="Start"
+                />
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
     </ScrollView>
 
 </ContentPage>

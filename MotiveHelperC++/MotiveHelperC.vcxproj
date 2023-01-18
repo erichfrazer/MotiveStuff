@@ -52,6 +52,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>..\NatNetSDK\include;D:\OptitrackCameraSDK\include;d:\mr2\motiveapi\inc;$(IncludePath)</IncludePath>
     <LibraryPath>..\NatNetSdk\lib\x64;D:\OptitrackCameraSDK\lib;d:\mr2\motiveapi\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\net6.0</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -102,12 +103,12 @@ xcopy /D /Y "$(MOTIVEAPI_LIB)\..\assemblies\platforms\*.dll" "$(OutDir)platforms
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\MotiveAPI\inc\MotiveAPI.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="MotiveHelper.h" />
     <ClInclude Include="MotiveHelper_public.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="Test.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />

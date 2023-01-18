@@ -27,10 +27,10 @@
     <ClInclude Include="MotiveHelper_public.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Test.h">
+    <ClInclude Include="Matrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Matrix.h">
+    <ClInclude Include="..\..\MotiveAPI\inc\MotiveAPI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
